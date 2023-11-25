@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Hola Mundo</p>
+    <form action="/movie" method="POST">
+      <label for="">ApiKey</label>
+      <input type="text" name="apiKey" id="apiKey" />
+    </form>
+    {% if movies %}
+    <h2>Results for "Random Series"</h2>
+
+    <ul>
+      {% for movie in movies %}
+      <li>
+        <div class="movie-info">
+          <img src="{{movie.primaryImage.url}}" alt="Movie Poster" />
+          <h2>{{ movie.originalTitleText.text }}</h2>
+          <p>Release Date: {{ movie.releaseYear.year }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
